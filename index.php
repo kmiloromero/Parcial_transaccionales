@@ -36,10 +36,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="index.php" class="brand-link">
+      <img src="dist/img/logo_parqueadero.jpg" alt="Logo Administrador" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">ST</span>
+      <span class="brand-text font-weight-light">Sistema Parqueadero</span>
     </a>
 
     <!-- Sidebar -->
@@ -57,7 +57,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
-          <li class="nav-item" onClick="mostrar_forms('usuarios/index.php');">
+          <li class="nav-item" onClick="mostrar_forms('registroUsuario/index.php');">
             <a href="#" class="nav-link ">
               <i class="far fa-circle nav-icon"></i>
               <p>Registrar Usuario</p>
@@ -78,14 +78,14 @@
           <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Generar Comprobante</p></br>
-              <p>de pago</p>
+              <p>Escoger Bahia</p>  
             </a>
           </li>
           <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Escoger Bahia</p>
+              <p>Generar Comprobante</p></br>
+              <p>de pago</p>
             </a>
           </li>      
         </ul>

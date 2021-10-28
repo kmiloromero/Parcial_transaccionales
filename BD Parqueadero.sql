@@ -2,7 +2,10 @@ create database parqueadero;
 use parqueadero;
 create table persona(
 idPersona int(11) unsigned primary key,
-Nombre varchar(100)
+cedula int (11) unsigned unique,
+Nombre varchar(100) not null,
+direccion varchar(40),
+telefono varchar(11)
 );
 create table tipoVehiculo (
 idTipo int(11) unsigned primary key,
@@ -22,6 +25,7 @@ foreign key (idParqueadero) references parqueadero(idParqueadero)
 create table vehiculo(
 idVehiculo int(11) unsigned primary key,
 marca varchar(40) not null,
+placa varchar(7) not null,
 idPersona int(11) unsigned not null,
 idTipo int(11) unsigned not null,
 foreign key (idPersona) references persona(idPersona),
