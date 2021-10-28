@@ -63,7 +63,7 @@
               <p>Registrar Usuario</p>
             </a>
           </li>
-          <li class="nav-item" onClick="mostrar_forms('autoevaluacion/index.php');">
+          <li class="nav-item" onClick="mostrar_forms('registroVehiculo/index.php');">
             <a href="#" class="nav-link ">
               <i class="far fa-circle nav-icon"></i>
               <p>Registrar Vehiculo</p>

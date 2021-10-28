@@ -1,22 +1,18 @@
 <?php
 include "../conexion.php";
-$nombre_entidad=array();
-$entidades=mysqli_query($conn,"SELECT * FROM entidades ");
-while($rowentidades=mysqli_fetch_array($entidades)){
-	$nombre_entidad[$rowentidades['id_entidad']]=$rowentidades['nombre'];
+$id_Persona=array();
+$persona=mysqli_query($conn,"SELECT idPersona FROM persona ");
+while($rowpersona=mysqli_fetch_array($persona)){
+	$id_Persona[$rowpersona['idPersona']]=$rowpersona['idPersona'];
 }	
 
-$nombre_usuario=array();
-$usuarios=mysqli_query($conn,"SELECT * FROM usuarios ");
-while($rowusuarios=mysqli_fetch_array($usuarios)){
-	$nombre_usuario[$rowusuarios['id_usuario']]=$rowusuarios['nombre'];
+$id_Tipo=array();
+$tipo=mysqli_query($conn,"SELECT idTipo from tipoVehiculo ");
+while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
+	$id_Tipo[$rowtipoVehiculo['IdTipo']]=$rowtipoVehiculo['IdTipo'];
 }	
 
-$nombre_evaluacion=array();
-$evaluacion=mysqli_query($conn,"SELECT * FROM autoevaluaciones ");
-while($rowevaluacion=mysqli_fetch_array($evaluacion)){
-	$nombre_evaluacion[$rowevaluacion['id_evaluacion']]=$rowevaluacion['nombre'];
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +20,7 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Prueba OET</title>
+  <title>Registro de vehivculo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,47 +41,32 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
 
 <div id="contenidos" style="margin: 1rem;padding: 1rem;">
 
-	<input type="button" value="Nuevo" onClick="abrir_modal();"><br /><br />
-	
+	<input type="button" class="btn btn-success" value="Nuevo" onClick="abrir_modal();"><br /><br /> 
 	<table id="tabla1" class="table table-striped table-bordered" style="width:100%">
 	    <thead>
 	        <tr>
-	            <th>Nombre</th>
-	            <th>estado</th>
-	            <th>Proceso</th>
-	            <th>Fecha</th>
-	            <th>Año</th>
-	            <th>Periodo</th>
-	            <th>Observacion</th>
-	            <th>Tecnica</th>
-	            <th>Puntuacion</th>
-	            <th>Evaluacion</th>
-	            <th>Usuario</th>
-	            <th>Entidad</th>
+	            <th>idVehiculo</th>
+	            <th>Marca</th>
+	            <th>Placa</th>
+	            <th>Idpersona</th>
+	            <th>IdTipo</th>
 	            <th>Editar</th>
 	            <th>Eliminar</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 	    	<?php
-	    	$supervision=mysqli_query($conn,"SELECT * FROM supervisiones ");
-	    	foreach ($supervision as $rowssupervision) {			
+	    	$vehiculo=mysqli_query($conn,"SELECT * FROM vehiculo ");
+	    	foreach ($vehiculo as $rowvehiculo) {			
 	    	?>
 		        <tr>
-		            <td><?=$rowssupervision['nombre']?></td>
-		            <th><?=$rowssupervision['estado']?></th>
-		            <th><?=$rowssupervision['proceso']?></th>
-		            <th><?=$rowssupervision['fecha']?></th>
-		            <th><?=$rowssupervision['año']?></th>
-		            <th><?=$rowssupervision['periodo']?></th>
-		            <th><?=$rowssupervision['observacion']?></th>
-		            <th><?=$rowssupervision['tecnica']?></th>
-		            <th><?=$rowssupervision['puntuacion']?></th>
-		            <th><?=$nombre_evaluacion[$rowssupervision['id_evaluacion']]?></th>
-		            <th><?=$nombre_usuario[$rowssupervision['id_usuario']]?></th>
-		            <th><?=$nombre_entidad[$rowssupervision['id_entidad']]?></th>
-		            <td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_supervision(<?=$rowssupervision['id_supervision']?>,'<?=$rowssupervision['nombre']?>','<?=$rowssupervision['estado']?>','<?=$rowssupervision['proceso']?>','<?=$rowssupervision['fecha']?>','<?=$rowssupervision['año']?>','<?=$rowssupervision['periodo']?>','<?=$rowssupervision['observacion']?>','<?=$rowssupervision['tecnica']?>','<?=$rowssupervision['puntuacion']?>','<?=$rowssupervision['id_evaluacion']?>','<?=$rowssupervision['id_usuario']?>','<?=$rowssupervision['id_entidad']?>');"/></td>
-		            <td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_supervision(this,<?=$rowssupervision['id_supervision']?>);"/></td>
+		            <td><?=$rowvehiculo['idVehiculo']?></td>
+		            <th><?=$rowvehiculo['marca']?></th>
+		            <th><?=$rowvehiculo['placa']?></th>
+		            <th><?=$rowvehiculo['idPersona']?></th>
+		            <th><?=$rowvehiculo['idTipo']?></th>
+		            <td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_vehiculo(<?=$rowvehiculo['idVehiculo']?>,'<?=$rowvehiculo['marca']?>','<?=$rowvehiculo['placa']?>','<?=$rowvehiculo['idPersona']?>','<?=$rowvehiculo['idTipo']?>');"/></td>
+		            <td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_vehiculo(this,<?=$rowvehiculo['idVehiculo']?>);"/></td>
 		        </tr>
 	      <?php
 	    	}
@@ -99,80 +80,29 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	        <div class="modal-header">
-	          <h4 class="modal-title">Editar supervision</h4>
+	          <h4 id='modal-titulo'class="modal-title">Registro de Vehiculo</h4>
 	        </div>
 	        <div class="modal-body">
 	          	<div class="card-body">
 	          		<div class="row">
 							    <div class="col">
 							    	<div class="form-group">
-		                  <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+		                  <input type="text" class="form-control" id="idVehiculo" placeholder="id Vehiculo">
 		                </div>
 		                <div class="form-group">
-		                  <select class="form-control" id="estado"> 
-		                  	<option value="Activo">Activo</option>
-		                  	<option value="Inactivo">Inactivo</option>			                    	
-		                  </select>
+		                	<input type="text" class="form-control" id="marca" placeholder="Marca">
 		                </div>
 		                <div class="form-group">
-		                  <input type="text" class="form-control" id="proceso" placeholder="Proceso">
-		                </div>
-		                <div class="form-group">
-		                  <input type="date" class="form-control" id="fecha" placeholder="Fecha">
-		                </div>
-		                <div class="form-group">
-		                  <input type="text" class="form-control" id="ano" placeholder="Año">
-		                </div>
-		                <div class="form-group">
-		                  <input type="text" class="form-control" id="periodo" placeholder="Periodo">
-		                </div>		                			                  
+		                  <input type="text" class="form-control" id="placa" placeholder="Placa">
+		                </div>                  	                			                  
 							    </div>
 							    <div class="col">
-							    	<div class="form-group">
-		                  <input type="text" class="form-control" id="observacion" placeholder="Observacion">
+		                <div class="form-group">
+		                <input type="text" class="form-control" id="idPersona" placeholder="id Persona">
 		                </div>
 		                <div class="form-group">
-		                  <input type="text" class="form-control" id="puntuacion" placeholder="Puntuacion">
-		                </div>
-		                <div class="form-group">
-		                  <input type="text" class="form-control" id="tecnica" placeholder="Tecnica">
-		                </div>
-		                <div class="form-group">
-		                  <select class="form-control" id="id_evaluacion"> 
-		                  	<option value="0">--Seleccione Evaluacion--</option>
-		                  	<?php
-		                  	foreach ($evaluacion as $rowsevaluacion) {
-		                  	?>
-		                  		<option value="<?=$rowsevaluacion['id_evaluacion']?>"><?=$rowsevaluacion['nombre']?></option>
-		                  	<?php	
-		                  	}
-		                  	?>
-		                  </select>
-		                </div>				    	
-		                <div class="form-group">
-		                  <select class="form-control" id="id_usuario"> 
-		                  	<option value="0">--Seleccione Usuario--</option>
-		                  	<?php
-		                  	foreach ($usuarios as $rowsusuarios) {
-		                  	?>
-		                  		<option value="<?=$rowsusuarios['id_usuario']?>"><?=$rowsusuarios['nombre']?></option>
-		                  	<?php	
-		                  	}
-		                  	?>
-		                  </select>
-		                </div>
-		                <div class="form-group">
-		                  <select class="form-control" id="id_entidad"> 
-		                  	<option value="0">--Seleccione Entidad--</option>
-		                  	<?php
-		                  	foreach ($entidades as $rowsentidades) {
-		                  	?>
-		                  		<option value="<?=$rowsentidades['id_entidad']?>"><?=$rowsentidades['nombre']?></option>
-		                  	<?php	
-		                  	}
-		                  	?>
-		                  </select>
-		                </div>			                  
+		                  <input type="text" class="form-control" id="idTipo" placeholder="Id Tipo">
+		                </div>				    	              
 							    </div>
 							</div>
             </div>
@@ -210,7 +140,7 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
   	$('#myModal').modal('show');
   }
 
-  function editar_supervision(id,nombre,estado,proceso,fecha,ano,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
+  function editar_vehiculo(id,nombre,estado,proceso,fecha,ano,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
   	$('#myModal').modal('show');
   	document.getElementById('nombre').value=nombre;
   	document.getElementById('estado').value=estado;  	
@@ -230,7 +160,7 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
 
   
 
-  function actualizar_supervision(id_supervision){
+  function actualizar_vehiculo(id_supervision){
   	nombre=document.getElementById('nombre').value;
   	estado=document.getElementById('estado').value;  	
 	  proceso=document.getElementById('proceso').value;
@@ -256,7 +186,7 @@ while($rowevaluacion=mysqli_fetch_array($evaluacion)){
   	
   }	
 
-  function eliminar_supervision(esto,id){
+  function eliminar_vehiculo(esto,id){
   	$(esto).closest('tr').remove();
   	$("#resp").load('cargar.php',{bloque:'eli_supervision',id_supervision:id},function(response,status,xhr){
         if(response==1){
