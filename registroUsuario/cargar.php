@@ -2,7 +2,7 @@
 include "../conexion.php";
 
 if($_POST['bloque']=='crear_persona'){
-	$insertar=mysqli_query($conn,"INSERT INTO persona (idPersona, cedula, Nombre, direccion, telefono) VALUES ('".$_POST['idPersona']."','".$_POST['cedula']."','".$_POST['Nombre']."','".$_POST['direccion']."','".$_POST['telefono']."')");
+	$insertar=mysqli_query($conn,"INSERT INTO persona (idPersona, cedula, nombre, direccion, telefono) VALUES ('".$_POST['idPersona']."','".$_POST['cedula']."','".$_POST['nombre']."','".$_POST['direccion']."','".$_POST['telefono']."')");
 	echo $insertar;
 }
 if($_POST['bloque']=='act_persona'){
@@ -10,7 +10,7 @@ if($_POST['bloque']=='act_persona'){
 	echo $actualizar;
 }
 if($_POST['bloque']=='eli_persona'){
-	$eliminar=mysqli_query($conn,"DELETE  FROM  persona  WHERE idpersona='".$_POST['id_Persona']."' ");
+	$eliminar=mysqli_query($conn,"DELETE  FROM  persona  WHERE idPersona='".$_POST['id_Persona']."' ");
 	echo $eliminar;
 }
 ?>

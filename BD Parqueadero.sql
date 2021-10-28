@@ -3,7 +3,7 @@ use parqueadero;
 create table persona(
 idPersona int(11) unsigned primary key,
 cedula int (11) unsigned unique,
-Nombre varchar(100) not null,
+nombre varchar(100) not null,
 direccion varchar(40),
 telefono varchar(11)
 );

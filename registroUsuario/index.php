@@ -23,7 +23,7 @@ include "../conexion.php";
 
 <div id="contenidos" style="margin: 1rem;padding: 1rem;">
 
-	<input type="button" value="Nuevo" onClick="abrir_modal();"><br /><br />
+	<input type="button" class="btn btn-success" value="Nueva Persona" onClick="abrir_modal();"><br /><br />
 
 	<table id="tabla1" class="table table-striped table-bordered" style="width:100%">
 		<thead>
@@ -45,11 +45,11 @@ include "../conexion.php";
 				<tr>
 					<td><?= $rowpersona['idPersona'] ?></td>
 					<td><?= $rowpersona['cedula'] ?></td>
-					<td><?= $rowpersona['Nombre'] ?></td>
+					<td><?= $rowpersona['nombre'] ?></td>
 					<td><?= $rowpersona['direccion'] ?></td>
 					<td><?= $rowpersona['telefono'] ?></td>
-					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_usu(<?= $rowpersona['idPersona'] ?>,'<?= $rowpersona['cedula'] ?>','<?= $rowpersona['Nombre'] ?>','<?= $rowpersona['direccion'] ?>','<?= $rowpersona['telefono'] ?>);" /></td>
-					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_usu(this,<?= $rowpersona['idPersona'] ?>);" /></td>
+					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_Persona(<?= $rowpersona['idPersona'] ?>,'<?= $rowpersona['cedula'] ?>','<?= $rowpersona['nombre'] ?>','<?= $rowpersona['direccion'] ?>','<?= $rowpersona['telefono'] ?>');"/></td>
+					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_Persona(this,<?= $rowpersona['idPersona'] ?>);" /></td>
 				</tr>
 			<?php
 			}
@@ -64,7 +64,7 @@ include "../conexion.php";
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Crear Usuarios</h4>
+					<h4 id="modal-titulo" class="modal-title">Crear Usuarios</h4>
 				</div>
 				<div class="modal-body">
 					<div class="card-body">
@@ -77,7 +77,7 @@ include "../conexion.php";
 									<input type="text" class="form-control" id="cedula" placeholder="Cedula">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="Nombre" placeholder="Nombre Persona">
+									<input type="text" class="form-control" id="nombre" placeholder="Nombre Persona">
 								</div>
 							</div>
 							<div class="col">
@@ -118,25 +118,33 @@ include "../conexion.php";
 
 	function abrir_modal() {
 		$('#myModal').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Crear Persona";
+		document.getElementById('idPersona').value = '';
+		document.getElementById('idPersona').disabled=false;
+		document.getElementById('cedula').value = '';
+		document.getElementById('nombre').value = '';
+		document.getElementById('direccion').value = '';
+		document.getElementById('telefono').value = '';
+
 	}
 
 	function crear_Persona() {
-		idUsuario = document.getElementById('idUsuario').value;
+		idPersona = document.getElementById('idPersona').value;
 		cedula = document.getElementById('cedula').value;
 		nombre = document.getElementById('nombre').value;
 		direccion = document.getElementById('direccion').value;
 		telefono = document.getElementById('telefono').value;
 
-		if (nombre == '' || estado == '' || contrasena == '' || tipo == '' || entidad == '') {
+		if (idPersona == '' || cedula == '' || nombre == '' || direccion == '' || telefono == '') {
 			alert('falta diligenciar algun dato');
 		} else {
 			$("#resp").load('cargar.php', {
-				bloque: 'crear_usu',
-				nombre: nombre,
-				estado: estado,
-				contrasena: contrasena,
-				tipo: tipo,
-				entidad: entidad
+				bloque: 'crear_persona',
+				idPersona: idPersona,
+				cedula : cedula,
+				nombre : nombre,
+				direccion: direccion,
+				telefono : telefono
 			}, function(response, status, xhr) {
 				if (response == 1) {
 					location.reload();
@@ -146,36 +154,36 @@ include "../conexion.php";
 
 	}
 
-	function editar_usu(id, nombre, estado, contrasena, tipo, entidad) {
+	function editar_Persona(idPersona, cedula, nombre, direccion, telefono) {
 		$('#myModal').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Actualizar Persona";
+		document.getElementById('idPersona').value = idPersona;
+		document.getElementById('idPersona').disabled=true;
+		document.getElementById('cedula').value = cedula;
 		document.getElementById('nombre').value = nombre;
-		document.getElementById('estado').value = estado;
-		document.getElementById('contraseña').value = contrasena;
-		document.getElementById('tipo').value = tipo;
-		document.getElementById('entidad').value = entidad;
+		document.getElementById('direccion').value = direccion;
+		document.getElementById('telefono').value = telefono;
 		document.getElementById('camb_boton').setAttribute("value", "Actualizar");
-		document.getElementById('camb_boton').setAttribute("onClick", "actualizar_usu(" + id + ");");
+		document.getElementById('camb_boton').setAttribute("onClick", "act_persona(" + id + ");");
 	}
 
-	function actualizar_usu(id) {
+	function actualizar_Persona(id_Persona) {
+		cedula = document.getElementById('cedula').value;
 		nombre = document.getElementById('nombre').value;
-		estado = document.getElementById('estado').value;
-		contrasena = document.getElementById('contraseña').value;
-		tipo = document.getElementById('tipo').value;
-		entidad = document.getElementById('entidad').value;
+		direccion = document.getElementById('direccion').value;
+		telefono = document.getElementById('telefono').value;
 
-		if (nombre == '' || estado == '' || contrasena == '' || tipo == '' || entidad == '') {
+		if (cedula == '' || nombre == '' || direccion == '' || telefono == '') {
 			alert('falta diligenciar algun dato');
 		} else {
 			$("#resp").load('cargar.php', {
-				bloque: 'act_usu',
-				id_usu: id,
+				bloque: 'act_persona',
+				id_Persona: idPersona,
+				cedula: cedula,
 				nombre: nombre,
-				estado: estado,
-				contrasena: contrasena,
-				tipo: tipo,
-				entidad: entidad
-			}, function(response, status, xhr) {
+				direccion: direccion,
+				telefono: telefono
+				}, function(response, status, xhr) {
 				if (response == 1) {
 					location.reload();
 				}
@@ -184,11 +192,11 @@ include "../conexion.php";
 
 	}
 
-	function eliminar_usu(esto, id) {
+	function eliminar_Persona(esto, idPersona) {
 		$(esto).closest('tr').remove();
 		$("#resp").load('cargar.php', {
-			bloque: 'eli_usu',
-			id_usu: id
+			bloque: 'eli_persona',
+			id_Persona: idPersona
 		}, function(response, status, xhr) {
 			if (response == 1) {
 				location.reload();
