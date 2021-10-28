@@ -60,25 +60,19 @@
           <li class="nav-item" onClick="mostrar_forms('registroUsuario/index.php');">
             <a href="#" class="nav-link ">
               <i class="far fa-circle nav-icon"></i>
-              <p>Registrar Usuario</p>
+              <p>Gestion Usuario</p>
             </a>
           </li>
           <li class="nav-item" onClick="mostrar_forms('registroVehiculo/index.php');">
             <a href="#" class="nav-link ">
               <i class="far fa-circle nav-icon"></i>
-              <p>Registrar Vehiculo</p>
+              <p>Gestion Vehiculo</p>
             </a>
           </li>
           <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Buscar Parqueadero</p>
-            </a>
-          </li>
-          <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Escoger Bahia</p>  
             </a>
           </li>
           <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
@@ -118,8 +112,10 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">    
+        
           <iframe id="mostrar_forms" style="width: 100%;height: 800px;border: none;"
               src="">
+              
           </iframe>         
       </div><!-- /.container-fluid -->
     </section>

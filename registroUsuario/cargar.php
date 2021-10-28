@@ -6,7 +6,7 @@ if($_POST['bloque']=='crear_persona'){
 	echo $insertar;
 }
 if($_POST['bloque']=='act_persona'){
-	$actualizar=mysqli_query($conn,"UPDATE persona SET idPersona='".$_POST['idPersona']."', cedula='".$_POST['cedula']."', nombre='".$_POST['nombre']."', direccion='".$_POST['direccion']."', telefono='".$_POST['telefono']."' WHERE idPersona='".$_POST['id_Persona']."' ");
+	$actualizar=mysqli_query($conn,"UPDATE persona SET idPersona='".$_POST['idPersona']."', cedula='".$_POST['cedula']."', nombre='".$_POST['nombre']."', direccion='".$_POST['direccion']."', telefono='".$_POST['telefono']."' WHERE idVehiculo='".$_POST['id_Vehiculo']."' ");
 	echo $actualizar;
 }
 if($_POST['bloque']=='eli_persona'){

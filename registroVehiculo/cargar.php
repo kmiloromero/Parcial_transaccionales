@@ -10,7 +10,7 @@ if($_POST['bloque']=='crear_vehiculo'){
 
 
 if($_POST['bloque']=='act_vehiculo'){
-	$actualizar=mysqli_query($conn,"UPDATE vehiculo SET placa ='".$_POST['placa']."' ,marca='".$_POST['marca']."' ,idPersona='".$_POST['id_persona']."' ,idTipo='".$_POST['idTipo']."' ");
+	$actualizar=mysqli_query($conn,"UPDATE vehiculo SET placa ='".$_POST['placa']."' ,marca='".$_POST['marca']."' ,idPersona='".$_POST['id_persona']."' ,idTipo='".$_POST['idTipo']."' WHERE idPersona='".$_POST['id_Persona']."' ");
 	echo $actualizar;
 }
 if($_POST['bloque']=='eli_supervision'){

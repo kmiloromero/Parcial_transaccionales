@@ -85,40 +85,35 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	        <div class="modal-body">
 	          	<div class="card-body">
 	          		<div class="row">
-							    <div class="col">
-							    	<div class="form-group">
-		                  <input type="text" class="form-control" id="idVehiculo" placeholder="id Vehiculo">
-		                </div>
-		                <div class="form-group">
-		                	<input type="text" class="form-control" id="marca" placeholder="Marca">
-		                </div>
-		                <div class="form-group">
-		                  <input type="text" class="form-control" id="placa" placeholder="Placa">
-		                </div>                  	                			                  
-							    </div>
-							    <div class="col">
-		                <div class="form-group">
-		                <input type="text" class="form-control" id="idPersona" placeholder="id Persona">
-		                </div>
-		                <div class="form-group">
-		                  <input type="text" class="form-control" id="idTipo" placeholder="Id Tipo">
-		                </div>				    	              
-							    </div>
-							</div>
-            </div>
+						<div class="col">
+							<div class="form-group">
+		                  		<input type="text" class="form-control" id="idVehiculo" placeholder="id Vehiculo">
+		                	</div>
+		                	<div class="form-group">
+		                		<input type="text" class="form-control" id="marca" placeholder="Marca">
+		                	</div>
+		                	<div class="form-group">
+		                  		<input type="text" class="form-control" id="placa" placeholder="Placa">
+		                	</div>                  	                			                  
+						</div>
+						<div class="col">
+		                	<div class="form-group">
+		                		<input type="text" class="form-control" id="idPersona" placeholder="id Persona">
+		                	</div>
+		                	<div class="form-group">
+		                  		<input type="text" class="form-control" id="idTipo" placeholder="Id Tipo">
+		                	</div>				    	              
+						</div>
+					</div>
+            	</div>
 	        </div>
-
 	        <div class="modal-footer">
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-	          <input type="button" id="camb_boton" class="btn btn-success" value="Guardar" onClick="crear_supervision();">	          
+	          <input type="button" id="camb_boton" class="btn btn-success" value="Guardar" onClick="crear_vehiculo();">	          
 	        </div>
 	      </div>	      
 	    </div>
 	</div>
-
-
-
-
 
 </div>
 <div id="resp"></div>
