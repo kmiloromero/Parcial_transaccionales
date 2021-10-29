@@ -135,20 +135,20 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
   	$('#myModal').modal('show');
   }
 
-  function editar_vehiculo(id,nombre,estado,proceso,fecha,ano,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
+  function editar_vehiculo(id,idVehiculo,marca,placa,idPersona,idTipo,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
   	$('#myModal').modal('show');
-  	document.getElementById('nombre').value=nombre;
-  	document.getElementById('estado').value=estado;  	
-	  document.getElementById('proceso').value=proceso;
-	  document.getElementById('fecha').value=fecha;
-	  document.getElementById('ano').value=ano;
-	  document.getElementById('periodo').value=periodo;
+  	document.getElementById('idVehiculo').value=idVehiculo;
+  	document.getElementById('marca').value=marca;  	
+	  document.getElementById('placa').value=placa;
+	  document.getElementById('idPersona').value=idPersona;
+	  document.getElementById('idTipo').value=idTipo;
+	  /* document.getElementById('periodo').value=periodo;
 	  document.getElementById('observacion').value=observacion;
 	  document.getElementById('tecnica').value=tecnica;
 	  document.getElementById('puntuacion').value=puntuacion;
 	  document.getElementById('id_evaluacion').value=id_evaluacion;
 	  document.getElementById('id_usuario').value=id_usuario;
-	  document.getElementById('id_entidad').value=id_entidad;
+	  document.getElementById('id_entidad').value=id_entidad; */
   	document.getElementById('camb_boton').setAttribute("value", "Actualizar");
   	document.getElementById('camb_boton').setAttribute("onClick", "actualizar_supervision("+id+");");
   }
@@ -156,23 +156,23 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
   
 
   function actualizar_vehiculo(id_supervision){
-  	nombre=document.getElementById('nombre').value;
-  	estado=document.getElementById('estado').value;  	
-	  proceso=document.getElementById('proceso').value;
-	  fecha=document.getElementById('fecha').value;
-	  ano=document.getElementById('ano').value;
-	  periodo=document.getElementById('periodo').value;
+  	idVehiculo=document.getElementById('idVehiculo').value;
+  	marca=document.getElementById('marca').value;  	
+	  placa=document.getElementById('placa').value;
+	  idPersona=document.getElementById('idPersona').value;
+	  idTipo=document.getElementById('idTipo').value;
+	  /* periodo=document.getElementById('periodo').value;
 	  observacion=document.getElementById('observacion').value;
 	  tecnica=document.getElementById('tecnica').value;
 	  puntuacion=document.getElementById('puntuacion').value;
 	  id_evaluacion=document.getElementById('id_evaluacion').value;
 	  id_usuario=document.getElementById('id_usuario').value;
-	  id_entidad=document.getElementById('id_entidad').value;  	
+	  id_entidad=document.getElementById('id_entidad').value;  */ 	
   	
-  	if(nombre=='' ||  estado=='' || proceso=='' || fecha=='' || ano=='' || periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
+  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo=='' || periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
   		alert('falta diligenciar algun dato');
   	}else{	
-  		$("#resp").load('cargar.php',{bloque:'act_supervision',id_supervision:id_supervision,nombre:nombre,estado:estado,proceso:proceso,fecha:fecha,ano:ano,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
+  		$("#resp").load('cargar.php',{bloque:'act_supervision',id_supervision:id_supervision,idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
 	        if(response==1){
 	        	 location.reload();
 	        }  
@@ -183,31 +183,31 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 
   function eliminar_vehiculo(esto,id){
   	$(esto).closest('tr').remove();
-  	$("#resp").load('cargar.php',{bloque:'eli_supervision',id_supervision:id},function(response,status,xhr){
+  	$("#resp").load('cargar.php',{bloque:'eli_vehiculo',id_vehiculo:id},function(response,status,xhr){
         if(response==1){
         	 location.reload();
         }  
 		});
   }
 
-  function crear_supervision(){
-  	nombre=document.getElementById('nombre').value;
-  	estado=document.getElementById('estado').value;  	
-	  proceso=document.getElementById('proceso').value;
-	  fecha=document.getElementById('fecha').value;
-	  ano=document.getElementById('ano').value;
-	  periodo=document.getElementById('periodo').value;
+  function crear_vehiculo(){
+	idVehiculo=document.getElementById('idVehiculo').value;
+	marca=document.getElementById('marca').value;  	
+	  placa=document.getElementById('placa').value;
+	  idPersona=document.getElementById('idPersona').value;
+	  idTipo=document.getElementById('idTipo').value;
+	  /* periodo=document.getElementById('periodo').value;
 	  observacion=document.getElementById('observacion').value;
 	  tecnica=document.getElementById('tecnica').value;
 	  puntuacion=document.getElementById('puntuacion').value;
 	  id_evaluacion=document.getElementById('id_evaluacion').value;
 	  id_usuario=document.getElementById('id_usuario').value;
-	  id_entidad=document.getElementById('id_entidad').value;  	
+	  id_entidad=document.getElementById('id_entidad').value;  */ 	
   	
-  	if(nombre=='' ||  estado=='' || proceso=='' || fecha=='' || ano=='' || periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
+  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo=='' ){//|| periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
   		alert('falta diligenciar algun dato');
   	}else{	
-  		$("#resp").load('cargar.php',{bloque:'crear_supervision',nombre:nombre,estado:estado,proceso:proceso,fecha:fecha,ano:ano,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
+  		$("#resp").load('cargar.php',{bloque:'crear_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){//,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
 	        if(response==1){
 	        	 location.reload();
 	        }  
