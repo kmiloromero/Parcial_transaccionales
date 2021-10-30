@@ -136,6 +136,41 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		</div>
 	</div>
 
+		<!-- Modal -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h5 class="modal-title" id="exampleModalLongTitle">Informacion de Vehiculo</h5>
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          					<span aria-hidden="true">&times;</span>
+        				</button>
+      			</div>
+      				<div class="modal-body">
+        			<?php
+						foreach ($vehiculo as $rowvehiculo) {
+						?>
+						<br>Id: <br>
+						<h4> <?= $rowvehiculo['idVehiculo'] ?></h4>
+						<br>Marca: <br>
+						<h4> <?= $rowvehiculo['marca'] ?></h4>
+						<br>Placa: <br>
+						<h4> <?= $rowvehiculo['placa'] ?></h4>
+						<br>Id propietario: <br>
+						<h4> <?= $rowvehiculo['idPersona'] ?></h4>
+					    <br>Tipo de vehiculo: <br>
+						<h4> <?= $rowvehiculo['idTipo'] ?></h4>
+						<?php
+						}
+						?>  
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      				</div>
+    		</div>
+  		</div>
+	</div>
+
 </div>
 <div id="resp"></div>
 
@@ -163,6 +198,12 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		document.getElementById('idPersona').value='';
 		document.getElementById('idTipo').value='';
 		document.getElementById('camb_boton').setAttribute("value", "Guardar").onClick("crear_vehiculo();");
+	}
+
+		function abrir_modal2() {
+		$('#myModal2').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Informacion de Vehiculo";
+		document.getElementById('idVehiculo').value = idVehiculo;
 	}
 
 	function crear_vehiculo() {
