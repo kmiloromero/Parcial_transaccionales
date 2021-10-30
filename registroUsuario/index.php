@@ -35,6 +35,7 @@ include "../conexion.php";
 				<th>Telefono</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
+				<th>Generar información</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,6 +51,9 @@ include "../conexion.php";
 					<td><?= $rowpersona['telefono'] ?></td>
 					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_Persona(<?= $rowpersona['idPersona'] ?>,'<?= $rowpersona['cedula'] ?>','<?= $rowpersona['nombre'] ?>','<?= $rowpersona['direccion'] ?>','<?= $rowpersona['telefono'] ?>');"/></td>
 					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_Persona(this,<?= $rowpersona['idPersona'] ?>);" /></td>
+					<td>
+					<input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();">
+					</td>
 				</tr>
 			<?php
 			}
@@ -127,6 +131,11 @@ include "../conexion.php";
 		document.getElementById('telefono').value = '';
 
 	}
+		function abrir_modal2() {
+		$('#myModal').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Datos de Usuario";
+
+	}
 
 	function crear_Persona() {
 		idPersona = document.getElementById('idPersona').value;
@@ -193,6 +202,18 @@ include "../conexion.php";
 	}
 
 	function eliminar_Persona(esto, idPersona) {
+		$(esto).closest('tr').remove();
+		$("#resp").load('cargar.php', {
+			bloque: 'eli_persona',
+			id_Persona: idPersona
+		}, function(response, status, xhr) {
+			if (response == 1) {
+				location.reload();
+			}
+		});
+	}
+
+	function consultar_Persona(esto, idPersona) {
 		$(esto).closest('tr').remove();
 		$("#resp").load('cargar.php', {
 			bloque: 'eli_persona',
