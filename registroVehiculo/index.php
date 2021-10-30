@@ -98,10 +98,28 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 						</div>
 						<div class="col">
 		                	<div class="form-group">
-		                		<input type="text" class="form-control" id="idPersona" placeholder="id Persona">
+		                	<select class="form-control" id="idPersona"> 
+		                  	<option value="0">--Seleccione Id Usuario--</option>
+		                  	<?php
+		                  	foreach ($persona as $rowpersona) {
+		                  	?>
+		                  		<option value="<?=$rowpersona['idPersona']?>"><?=$rowpersona['idPersona']?></option>
+		                  	<?php	
+		                  	}
+		                  	?>
+		                  </select>
 		                	</div>
 		                	<div class="form-group">
-		                  		<input type="text" class="form-control" id="idTipo" placeholder="Id Tipo">
+		                  		<select class="form-control" id="idTipo"> 
+		                  	<option value="0">--Seleccione Id Tipo--</option>
+		                  	<?php
+		                  	foreach ($tipo as $rowvehiculo) {
+		                  	?>
+		                  		<option value="<?=$rowvehiculo['idTipo']?>"><?=$rowvehiculo['idTipo']?></option>
+		                  	<?php	
+		                  	}
+		                  	?>
+		                  </select>
 		                	</div>				    	              
 						</div>
 					</div>
@@ -135,21 +153,14 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
   	$('#myModal').modal('show');
   }
 
-  function editar_vehiculo(idVehiculo,marca,placa,idPersona,idTipo){ //,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
+  function editar_vehiculo(idVehiculo,marca,placa,idPersona,idTipo){ 
   	$('#myModal').modal('show');
   	document.getElementById('idVehiculo').value=idVehiculo;
   	document.getElementById('marca').value=marca;  	
 	  document.getElementById('placa').value=placa;
 	  document.getElementById('idPersona').value=idPersona;
 	  document.getElementById('idTipo').value=idTipo;
-	  /* document.getElementById('periodo').value=periodo;
-	  document.getElementById('observacion').value=observacion;
-	  document.getElementById('tecnica').value=tecnica;
-	  document.getElementById('puntuacion').value=puntuacion;
-	  document.getElementById('id_evaluacion').value=id_evaluacion;
-	  document.getElementById('id_usuario').value=id_usuario;
-	  document.getElementById('id_entidad').value=id_entidad; */
-  	document.getElementById('camb_boton').setAttribute("value", "Actualizar");
+	 document.getElementById('camb_boton').setAttribute("value", "Crear");
   	document.getElementById('camb_boton').setAttribute("onClick", "actualizar_vehiculo("+idVehiculo+");");
   }
 
@@ -161,18 +172,12 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	  placa=document.getElementById('placa').value;
 	  idPersona=document.getElementById('idPersona').value;
 	  idTipo=document.getElementById('idTipo').value;
-	  /* periodo=document.getElementById('periodo').value;
-	  observacion=document.getElementById('observacion').value;
-	  tecnica=document.getElementById('tecnica').value;
-	  puntuacion=document.getElementById('puntuacion').value;
-	  id_evaluacion=document.getElementById('id_evaluacion').value;
-	  id_usuario=document.getElementById('id_usuario').value;
-	  id_entidad=document.getElementById('id_entidad').value;  */ 	
+	
   	
-  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo==''){ //|| periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
+  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo==''){ 
   		alert('falta diligenciar algun dato');
   	}else{	
-  		$("#resp").load('cargar.php',{bloque:'act_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){ //,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
+  		$("#resp").load('cargar.php',{bloque:'act_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){ 
 	        if(response==1){
 	        	 location.reload();
 	        }  
@@ -196,18 +201,11 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	  placa=document.getElementById('placa').value;
 	  idPersona=document.getElementById('idPersona').value;
 	  idTipo=document.getElementById('idTipo').value;
-	  /* periodo=document.getElementById('periodo').value;
-	  observacion=document.getElementById('observacion').value;
-	  tecnica=document.getElementById('tecnica').value;
-	  puntuacion=document.getElementById('puntuacion').value;
-	  id_evaluacion=document.getElementById('id_evaluacion').value;
-	  id_usuario=document.getElementById('id_usuario').value;
-	  id_entidad=document.getElementById('id_entidad').value;  */ 	
-  	
-  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo=='' ){//|| periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
+
+  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo=='' ){
   		alert('falta diligenciar algun dato');
   	}else{	
-  		$("#resp").load('cargar.php',{bloque:'crear_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){//,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
+  		$("#resp").load('cargar.php',{bloque:'crear_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){
 	        if(response==1){
 	        	 location.reload();
 	        }  
