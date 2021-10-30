@@ -149,6 +149,7 @@ include "../conexion.php";
 		document.getElementById('direccion').value = '';
 		document.getElementById('telefono').value = '';
 		document.getElementById('camb_boton').setAttribute("value", "Guardar");
+		document.getElementById('camb_boton').setAttribute("onClick", "crear_Persona();");
 
 	}
 		function abrir_modal2() {

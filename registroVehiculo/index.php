@@ -162,7 +162,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		document.getElementById('placa').value='';
 		document.getElementById('idPersona').value='';
 		document.getElementById('idTipo').value='';
-		document.getElementById('camb_boton').setAttribute("value", "Guardar");
+		document.getElementById('camb_boton').setAttribute("value", "Guardar").onClick("crear_vehiculo();");
 	}
 
 	function crear_vehiculo() {

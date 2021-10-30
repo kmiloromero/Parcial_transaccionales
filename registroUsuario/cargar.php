@@ -13,4 +13,4 @@ if($_POST['bloque']=='eli_persona'){
 	$eliminar=mysqli_query($conn,"DELETE  FROM  persona  WHERE idPersona='".$_POST['id_Persona']."' ");
 	echo $eliminar;
 }
-?>s
+?>
