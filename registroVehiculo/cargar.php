@@ -10,10 +10,10 @@ if($_POST['bloque']=='crear_vehiculo'){
 
 
 if($_POST['bloque']=='act_vehiculo'){
-	$actualizar=mysqli_query($conn,"UPDATE vehiculo SET placa ='".$_POST['placa']."' ,marca='".$_POST['marca']."' ,idPersona='".$_POST['id_persona']."' ,idTipo='".$_POST['idTipo']."' WHERE idPersona='".$_POST['id_Persona']."' ");
+	$actualizar=mysqli_query($conn,"UPDATE vehiculo SET placa ='".$_POST['placa']."' ,marca='".$_POST['marca']."' ,idPersona='".$_POST['idPersona']."' ,idTipo='".$_POST['idTipo']."' WHERE idPersona='".$_POST['idPersona']."' ");
 	echo $actualizar;
 }
-if($_POST['bloque']=='eli_supervision'){
+if($_POST['bloque']=='eli_vehiculo'){
 	$eliminar=mysqli_query($conn,"DELETE  FROM  vehiculo  WHERE id_vehiculo='".$_POST['id_vehiculo']."' ");
 	echo $eliminar;
 }

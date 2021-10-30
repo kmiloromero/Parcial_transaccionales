@@ -135,7 +135,7 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
   	$('#myModal').modal('show');
   }
 
-  function editar_vehiculo(id,idVehiculo,marca,placa,idPersona,idTipo,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
+  function editar_vehiculo(idVehiculo,marca,placa,idPersona,idTipo){ //,periodo,observacion,tecnica,puntuacion,id_evaluacion,id_usuario,id_entidad){
   	$('#myModal').modal('show');
   	document.getElementById('idVehiculo').value=idVehiculo;
   	document.getElementById('marca').value=marca;  	
@@ -150,12 +150,12 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	  document.getElementById('id_usuario').value=id_usuario;
 	  document.getElementById('id_entidad').value=id_entidad; */
   	document.getElementById('camb_boton').setAttribute("value", "Actualizar");
-  	document.getElementById('camb_boton').setAttribute("onClick", "actualizar_supervision("+id+");");
+  	document.getElementById('camb_boton').setAttribute("onClick", "actualizar_vehiculo("+idVehiculo+");");
   }
 
   
 
-  function actualizar_vehiculo(id_supervision){
+  function actualizar_vehiculo(idVehiculo,marca,placa,idPersona,idTipo){
   	idVehiculo=document.getElementById('idVehiculo').value;
   	marca=document.getElementById('marca').value;  	
 	  placa=document.getElementById('placa').value;
@@ -169,10 +169,10 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	  id_usuario=document.getElementById('id_usuario').value;
 	  id_entidad=document.getElementById('id_entidad').value;  */ 	
   	
-  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo=='' || periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
+  	if(idVehiculo=='' ||  marca=='' || placa=='' || idPersona=='' || idTipo==''){ //|| periodo==''  || observacion=='' || tecnica=='' || puntuacion=='' || id_evaluacion=='' || id_usuario=='' || id_entidad==''){
   		alert('falta diligenciar algun dato');
   	}else{	
-  		$("#resp").load('cargar.php',{bloque:'act_supervision',id_supervision:id_supervision,idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
+  		$("#resp").load('cargar.php',{bloque:'act_vehiculo',idVehiculo:idVehiculo,marca:marca,placa:placa,idPersona:idPersona,idTipo:idTipo },function(response,status,xhr){ //,periodo:periodo,observacion:observacion,tecnica:tecnica,puntuacion:puntuacion,id_evaluacion:id_evaluacion,id_usuario:id_usuario,id_entidad:id_entidad},function(response,status,xhr){
 	        if(response==1){
 	        	 location.reload();
 	        }  
