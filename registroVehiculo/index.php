@@ -9,7 +9,7 @@ while($rowpersona=mysqli_fetch_array($persona)){
 $id_Tipo=array();
 $tipo=mysqli_query($conn,"SELECT idTipo from tipoVehiculo ");
 while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
-	$id_Tipo[$rowtipoVehiculo['IdTipo']]=$rowtipoVehiculo['IdTipo'];
+	$id_Tipo[$rowtipoVehiculo['idTipo']]=$rowtipoVehiculo['idTipo'];
 }	
 
 
@@ -49,7 +49,7 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 	            <th>Marca</th>
 	            <th>Placa</th>
 	            <th>Idpersona</th>
-	            <th>IdTipo</th>
+	            <th>idTipo</th>
 	            <th>Editar</th>
 	            <th>Eliminar</th>
 	        </tr>
