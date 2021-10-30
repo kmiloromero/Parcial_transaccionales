@@ -51,9 +51,7 @@ include "../conexion.php";
 					<td><?= $rowpersona['telefono'] ?></td>
 					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_Persona(<?= $rowpersona['idPersona'] ?>,'<?= $rowpersona['cedula'] ?>','<?= $rowpersona['nombre'] ?>','<?= $rowpersona['direccion'] ?>','<?= $rowpersona['telefono'] ?>');"/></td>
 					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_Persona(this,<?= $rowpersona['idPersona'] ?>);" /></td>
-					<td>
-					<input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();">
-					</td>
+					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();"></td>
 				</tr>
 			<?php
 			}
@@ -129,6 +127,7 @@ include "../conexion.php";
 		document.getElementById('nombre').value = '';
 		document.getElementById('direccion').value = '';
 		document.getElementById('telefono').value = '';
+		document.getElementById('camb_boton').innerHTML="Guardar";
 
 	}
 		function abrir_modal2() {
