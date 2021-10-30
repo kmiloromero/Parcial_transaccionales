@@ -127,7 +127,7 @@ include "../conexion.php";
 		document.getElementById('nombre').value = '';
 		document.getElementById('direccion').value = '';
 		document.getElementById('telefono').value = '';
-		document.getElementById('camb_boton').innerHTML="Guardar";
+		document.getElementById('camb_boton').setAttribute("value", "Guardar");
 
 	}
 		function abrir_modal2() {

@@ -42,7 +42,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 
 <div id="contenidos" style="margin: 1rem;padding: 1rem;">
 
-	<input type="button" class="btn btn-success" value="Nuevo" onClick="abrir_modal();"><br /><br />
+	<input type="button" class="btn btn-success" value="Nuevo Registro de Vehiculo" onClick="abrir_modal();"><br /><br />
 	<table id="tabla1" class="table table-striped table-bordered" style="width:100%">
 		<thead>
 			<tr>
@@ -153,6 +153,14 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 
 	function abrir_modal() {
 		$('#myModal').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Registrar Vehiculo";
+		document.getElementById('idVehiculo').value='';
+		document.getElementById('idVehiculo').disabled=false;
+		document.getElementById('marca').value='';
+		document.getElementById('placa').value='';
+		document.getElementById('idPersona').value='';
+		document.getElementById('idTipo').value='';
+		document.getElementById('camb_boton').setAttribute("value", "Guardar");
 	}
 
 	function crear_vehiculo() {
@@ -183,12 +191,14 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 
 	function editar_vehiculo(idVehiculo, marca, placa, idPersona, idTipo) {
 		$('#myModal').modal('show');
+		document.getElementById('modal-titulo').innerHTML="Actualizar Registro de Vehiculo";
 		document.getElementById('idVehiculo').value = idVehiculo;
+		document.getElementById('idVehiculo').disabled=true;
 		document.getElementById('marca').value = marca;
 		document.getElementById('placa').value = placa;
 		document.getElementById('idPersona').value = idPersona;
 		document.getElementById('idTipo').value = idTipo;
-		document.getElementById('camb_boton').setAttribute("value", "Crear");
+		document.getElementById('camb_boton').setAttribute("value", "Actualizar");
 		document.getElementById('camb_boton').setAttribute("onClick", "actualizar_vehiculo(" + idVehiculo + ");");
 	}
 
