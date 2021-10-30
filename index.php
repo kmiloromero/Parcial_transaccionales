@@ -111,7 +111,17 @@
 
     <!-- Main content -->
     <section class="content">
+      
+          <div class="container-md">
+            <div class="card">
+              <div class="card-body">
+                <H3>Bienvenido al Software de Gestion del Parqueadero</H3>
+                <p>Por favor Seleccione la funcionalidad que desee.</p>
+              </div>
+            </div>
+          </div>
       <div class="container-fluid">    
+          
         
           <iframe id="mostrar_forms" style="width: 100%;height: 800px;border: none;"
               src="">
