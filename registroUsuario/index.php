@@ -107,13 +107,24 @@ include "../conexion.php";
    		<div class="modal-dialog modal-dialog-centered" role="document">
     		<div class="modal-content">
       			<div class="modal-header">
-        			<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        			<h5 class="modal-title" id="exampleModalLongTitle">Informacion de Usuario</h5>
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         				</button>
       			</div>
       				<div class="modal-body">
-        			...
+        			<?php
+						foreach ($persona as $rowpersona) {
+						?>
+						<br>Id: <br>
+						<h4> <?= $rowpersona['idPersona'] ?></h4>
+						<br>Nombre: <br>
+						<h4> <?= $rowpersona['nombre'] ?></h4>
+						<br>Telefono: <br>
+						<h4> <?= $rowpersona['telefono'] ?></h4>
+						<?php
+						}
+						?>  
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -152,10 +163,11 @@ include "../conexion.php";
 		document.getElementById('camb_boton').setAttribute("onClick", "crear_Persona();");
 
 	}
+
 		function abrir_modal2() {
 		$('#myModal2').modal('show');
-		document.getElementById('modal-titulo').innerHTML="Informacion de usuario";
-
+		document.getElementById('modal-titulo').innerHTML="Informacion de Usuario";
+		document.getElementById('idPersona').value = idPersona;
 	}
 
 	function crear_Persona() {
@@ -232,6 +244,13 @@ include "../conexion.php";
 				location.reload();
 			}
 		});
+	}
+
+		function mostrar_datos(id_Persona) {
+		document.getElementById('idPersona').value = idPersona;
+		document.getElementById('nombre').value = nombre;
+		document.getElementById('telefono').value = telefono;
+		document.getElementById('camb_boton').setAttribute("onClick", "act_persona(" + id + ");");
 	}
 
 	function consultar_Persona(esto, idPersona) {
