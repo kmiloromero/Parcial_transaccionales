@@ -134,12 +134,6 @@ include "../conexion.php";
 		function abrir_modal2() {
 		$('#myModal').modal('show');
 		document.getElementById('modal-titulo').innerHTML="Datos de Usuario";
-		document.getElementById('idPersona').value = '';
-		document.getElementById('idPersona').disabled=false;
-		document.getElementById('cedula').value = '';
-		document.getElementById('nombre').value = '';
-		document.getElementById('direccion').value = '';
-		document.getElementById('telefono').value = '';
 
 	}
 
