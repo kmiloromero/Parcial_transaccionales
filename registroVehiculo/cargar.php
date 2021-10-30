@@ -14,7 +14,7 @@ if($_POST['bloque']=='act_vehiculo'){
 	echo $actualizar;
 }
 if($_POST['bloque']=='eli_vehiculo'){
-	$eliminar=mysqli_query($conn,"DELETE  FROM  vehiculo  WHERE id_vehiculo='".$_POST['id_vehiculo']."' , '".$_POST['marca']."','".$_POST['placa']."','".$_POST['idPersona']."','".$_POST['idTipo']."')  ");
+	$eliminar=mysqli_query($conn,"DELETE  FROM  vehiculo  WHERE idVehiculo='".$_POST['idVehiculo']."' ");
 	echo $eliminar;
 }
 ?>

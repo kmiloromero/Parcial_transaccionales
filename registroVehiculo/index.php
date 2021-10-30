@@ -183,7 +183,7 @@ while($rowtipoVehiculo=mysqli_fetch_array($tipo)){
 
   function eliminar_vehiculo(esto,id){
   	$(esto).closest('tr').remove();
-  	$("#resp").load('cargar.php',{bloque:'eli_vehiculo',id_vehiculo:id},function(response,status,xhr){
+  	$("#resp").load('cargar.php',{bloque:'eli_vehiculo',idVehiculo:id},function(response,status,xhr){
         if(response==1){
         	 location.reload();
         }  
