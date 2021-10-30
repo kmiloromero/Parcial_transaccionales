@@ -53,6 +53,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 				<th>idTipo</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
+				<th>Generar información</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -68,6 +69,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 					<th><?= $rowvehiculo['idTipo'] ?></th>
 					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_vehiculo(<?= $rowvehiculo['idVehiculo'] ?>,'<?= $rowvehiculo['marca'] ?>','<?= $rowvehiculo['placa'] ?>','<?= $rowvehiculo['idPersona'] ?>','<?= $rowvehiculo['idTipo'] ?>');" /></td>
 					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_vehiculo(this,<?= $rowvehiculo['idVehiculo'] ?>);" /></td>
+					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();"></td>
 				</tr>
 			<?php
 			}
