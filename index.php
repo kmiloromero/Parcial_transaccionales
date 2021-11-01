@@ -69,7 +69,7 @@
               <p>Gestion Vehiculo</p>
             </a>
           </li>
-          <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
+          <li class="nav-item" onClick="mostrar_forms('escogerParqueadero/index.php');">
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Buscar Parqueadero</p>
