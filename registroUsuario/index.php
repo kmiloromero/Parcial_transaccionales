@@ -116,12 +116,9 @@ include "../conexion.php";
         			<?php
 						foreach ($persona as $rowpersona) {
 						?>
-						<br>Id: <br>
-						<h4> <?= $rowpersona['idPersona'] ?></h4>
-						<br>Nombre: <br>
-						<h4> <?= $rowpersona['nombre'] ?></h4>
-						<br>Telefono: <br>
-						<h4> <?= $rowpersona['telefono'] ?></h4>
+						<h5>Id: <?= $rowpersona['idPersona'] ?></h5>
+						<h5>Nombre: <?= $rowpersona['nombre'] ?></h5>
+						<h5>Telefono: <?= $rowpersona['telefono'] ?></h5><br>
 						<?php
 						}
 						?>  
