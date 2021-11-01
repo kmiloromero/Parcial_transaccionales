@@ -69,7 +69,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 					<th><?= $rowvehiculo['idTipo'] ?></th>
 					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_vehiculo(<?= $rowvehiculo['idVehiculo'] ?>,'<?= $rowvehiculo['marca'] ?>','<?= $rowvehiculo['placa'] ?>','<?= $rowvehiculo['idPersona'] ?>','<?= $rowvehiculo['idTipo'] ?>');" /></td>
 					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_vehiculo(this,<?= $rowvehiculo['idVehiculo'] ?>);" /></td>
-					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();"></td>
+					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2(<?= $rowvehiculo['idVehiculo'] ?>);"></td>
 				</tr>
 			<?php
 			}
@@ -146,18 +146,8 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
           					<span aria-hidden="true">&times;</span>
         				</button>
       			</div>
-      				<div class="modal-body">
-        			<?php
-						foreach ($vehiculo as $rowvehiculo) {
-						?>
-						<h5>Id: <?= $rowvehiculo['idVehiculo']?></h5> 
-						<h5>Marca: <?= $rowvehiculo['marca'] ?></h5>
-						<h5>Placa: <?= $rowvehiculo['placa'] ?></h5>
-						<h5>Id propietario: <?= $rowvehiculo['idPersona']?></h5> 
-						<h5>Tipo de vehiculo: <?= $rowvehiculo['idTipo']?></h5><br>
-						<?php
-						}
-						?>  
+      				<div id="modalgenerar" class="modal-body">
+        			  
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -195,10 +185,14 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		document.getElementById('camb_boton').setAttribute("value", "Guardar").onClick("crear_vehiculo();");
 	}
 
-		function abrir_modal2() {
+		function abrir_modal2(idVehiculo) {
 		$('#myModal2').modal('show');
 		document.getElementById('modal-titulo').innerHTML="Informacion de Vehiculo";
-		document.getElementById('idVehiculo').value = idVehiculo;
+		$("#modalgenerar").load('cargar.php', {
+				bloque: 'generarVehiculo',
+				idVehiculo: idVehiculo
+			}
+			);	
 	}
 
 	function crear_vehiculo() {
