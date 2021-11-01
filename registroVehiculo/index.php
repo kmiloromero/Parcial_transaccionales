@@ -150,16 +150,11 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
         			<?php
 						foreach ($vehiculo as $rowvehiculo) {
 						?>
-						<br>Id: <br>
-						<h4> <?= $rowvehiculo['idVehiculo'] ?></h4>
-						<br>Marca: <br>
-						<h4> <?= $rowvehiculo['marca'] ?></h4>
-						<br>Placa: <br>
-						<h4> <?= $rowvehiculo['placa'] ?></h4>
-						<br>Id propietario: <br>
-						<h4> <?= $rowvehiculo['idPersona'] ?></h4>
-					    <br>Tipo de vehiculo: <br>
-						<h4> <?= $rowvehiculo['idTipo'] ?></h4>
+						<h5>Id: <?= $rowvehiculo['idVehiculo']?></h5> 
+						<h5>Marca: <?= $rowvehiculo['marca'] ?></h5>
+						<h5>Placa: <?= $rowvehiculo['placa'] ?></h5>
+						<h5>Id propietario: <?= $rowvehiculo['idPersona']?></h5> 
+						<h5>Tipo de vehiculo: <?= $rowvehiculo['idTipo']?></h5><br>
 						<?php
 						}
 						?>  
