@@ -17,8 +17,7 @@ if($_POST['bloque']=='eli_vehiculo'){
 	$eliminar=mysqli_query($conn,"DELETE  FROM  vehiculo  WHERE idVehiculo='".$_POST['idVehiculo']."' ");
 	echo $eliminar;
 }
-if($_POST['bloque']=='generarVehiculo')
-{
+if($_POST['bloque']=='generarVehiculo'){
 	$busqueda = mysqli_query($conn, "SELECT * FROM vehiculo WHERE idVehiculo='".$_POST['idVehiculo']."' ");
 	While ($arraybusqueda=mysqli_fetch_array($busqueda)){ 
 			echo "
