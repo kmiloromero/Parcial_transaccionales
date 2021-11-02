@@ -75,7 +75,7 @@
               <p>Buscar Parqueadero</p>
             </a>
           </li>
-          <li class="nav-item" onClick="mostrar_forms('supervision/index.php');">
+          <li class="nav-item" onClick="mostrar_forms('comprobante/index.php');">
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Generar Comprobante</p></br>

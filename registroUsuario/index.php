@@ -51,7 +51,7 @@ include "../conexion.php";
 					<td><?= $rowpersona['telefono'] ?></td>
 					<td><input type="button" value="Editar" class="btn btn-warning" onClick="editar_Persona(<?= $rowpersona['idPersona'] ?>,'<?= $rowpersona['cedula'] ?>','<?= $rowpersona['nombre'] ?>','<?= $rowpersona['direccion'] ?>','<?= $rowpersona['telefono'] ?>');"/></td>
 					<td><input type="button" value="Eliminar" class="btn btn-danger" onClick="eliminar_Persona(this,<?= $rowpersona['idPersona'] ?>);" /></td>
-					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();"></td>
+					<td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2(<?= $rowpersona['idPersona'] ?>);"></td>
 				</tr>
 			<?php
 			}
@@ -112,16 +112,7 @@ include "../conexion.php";
           					<span aria-hidden="true">&times;</span>
         				</button>
       			</div>
-      				<div class="modal-body">
-        			<?php
-						foreach ($persona as $rowpersona) {
-						?>
-						<h5>Id: <?= $rowpersona['idPersona'] ?></h5>
-						<h5>Nombre: <?= $rowpersona['nombre'] ?></h5>
-						<h5>Telefono: <?= $rowpersona['telefono'] ?></h5><br>
-						<?php
-						}
-						?>  
+      				<div id="modalgenerar" class="modal-body">
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -161,10 +152,14 @@ include "../conexion.php";
 
 	}
 
-		function abrir_modal2() {
+function abrir_modal2(idPersona) {
 		$('#myModal2').modal('show');
-		document.getElementById('modal-titulo').innerHTML="Informacion de Usuario";
-		document.getElementById('idPersona').value = idPersona;
+		document.getElementById('modal-titulo').innerHTML="Informacion de Persona";
+		$("#modalgenerar").load('cargar.php', {
+				bloque: 'generarPersona',
+				idPersona: idPersona
+			}
+			);	
 	}
 
 	function crear_Persona() {
