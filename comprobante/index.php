@@ -65,7 +65,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		            <th><?=$rowspago['tiempo']?></th>
 		            <th><?=$rowspago['costo']?></th>
 		            <th><?=$rowspago['fecha']?></th>
-		            <td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2();"></td>
+		            <td><input type="button" class="btn btn-primary" value="Generar" onClick="abrir_modal2(<?= $rowspago['idPago'] ?>);"></td>
 						</tr>
 		    <?php
 	    	}
@@ -78,24 +78,12 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
    		<div class="modal-dialog modal-dialog-centered" role="document">
     		<div class="modal-content">
       			<div class="modal-header">
-        			<h5 class="modal-title" id="exampleModalLongTitle">Comprbobante de pago N° </h1><?=$rowspago['idPago']?></h1>
+        			<h5 class="modal-title" id="exampleModalLongTitle">Comprobante de Pago</h5>
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         				</button>
-      			</div>
-						<div class="modal-body">
-        			<?php
-						foreach ($pago as $rowpago) {
-						?>
-						<h5>Id comprobante: <?= $rowpago['idPago'] ?></h5>
-						<h5>Id Bahia: <?= $rowpago['idBahia'] ?></h5>
-						<h5>Id Vehiculo: <?= $rowpago['idVehiculo'] ?></h5>
-						<h5>Tiempo: <?= $rowpago['tiempo'] ?></h5>
-						<h5>Costo: <?= $rowpago['costo'] ?></h5>
-						<h5>Fecha: <?= $rowpago['fecha'] ?></h5><br>
-						<?php
-						}
-						?>  
+      			    </div>
+      				<div id="modalgenerar" class="modal-body">
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,17 +106,14 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 <script src="../plugins/toastr/toastr.min.js"></script>
 
 <script>
-  $(function () {
-    $("#tabla1").DataTable();    
-  });
-  function abrir_modal(){
-  	$('#myModal').modal('show');
-  }
 
-		function abrir_modal2() {
+function abrir_modal2(idPago) {
 		$('#myModal2').modal('show');
-		document.getElementById('modal-titulo').innerHTML="Generar comprobante";
-		document.getElementById('idPago').value = idPago;
+		$("#modalgenerar").load('cargar.php', {
+				bloque: 'generarComprobante',
+				idPago: idPago
+			}
+			);	
 	}
   
 </script>

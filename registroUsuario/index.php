@@ -111,7 +111,7 @@ include "../conexion.php";
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         				</button>
-      			</div>
+      			    </div>
       				<div id="modalgenerar" class="modal-body">
       				</div>
       				<div class="modal-footer">
