@@ -1,15 +1,12 @@
 <?php
 include "../conexion.php";
-$id_Persona = array();
-$persona = mysqli_query($conn, "SELECT idPersona FROM persona ");
-while ($rowpersona = mysqli_fetch_array($persona)) {
-	$id_Persona[$rowpersona['idPersona']] = $rowpersona['idPersona'];
-}
+$nombrePersona = array();
+$persona = mysqli_query($conn, "SELECT * FROM persona ");
 
-$id_Tipo = array();
-$tipo = mysqli_query($conn, "SELECT idTipo from tipoVehiculo ");
+$claseTipo = array();
+$tipo = mysqli_query($conn, "SELECT * from tipoVehiculo ");
 while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
-	$id_Tipo[$rowtipoVehiculo['idTipo']] = $rowtipoVehiculo['idTipo'];
+	$claseTipo[$rowtipoVehiculo['idTipo']] = $rowtipoVehiculo['clase'];
 }
 
 
@@ -106,7 +103,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 										<?php
 										foreach ($persona as $rowpersona) {
 										?>
-											<option value="<?= $rowpersona['idPersona'] ?>"><?= $rowpersona['idPersona'] ?></option>
+											<option value="<?= $rowpersona['idPersona'] ?>"><?= $rowpersona['idPersona'].'-'.$rowpersona['nombre']?></option>
 										<?php
 										}
 										?>
@@ -118,7 +115,7 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 										<?php
 										foreach ($tipo as $rowvehiculo) {
 										?>
-											<option value="<?= $rowvehiculo['idTipo'] ?>"><?= $rowvehiculo['idTipo'] ?></option>
+											<option value="<?= $rowvehiculo['idTipo'] ?>"> <?= $rowvehiculo['idTipo'].'-'.$claseTipo[$rowvehiculo['idTipo']]?></option>
 										<?php
 										}
 										?>
@@ -180,8 +177,8 @@ while ($rowtipoVehiculo = mysqli_fetch_array($tipo)) {
 		document.getElementById('idVehiculo').disabled=false;
 		document.getElementById('marca').value='';
 		document.getElementById('placa').value='';
-		document.getElementById('idPersona').value='';
-		document.getElementById('idTipo').value='';
+		document.getElementById('idPersona').value='0';
+		document.getElementById('idTipo').value='0';
 		document.getElementById('camb_boton').setAttribute("value", "Guardar").onClick("crear_vehiculo();");
 	}
 
